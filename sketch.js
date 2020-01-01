@@ -24,10 +24,10 @@ function setup() {
         portal: 1000000000000,
         timeMachine: 14000000000000,
         antimatterCondenser: 170000000000000,
-        prism: 21000000000000000,
-        chancemaker: 26000000000000000,
-        fractalEngine: 310000000000000000,
-        javascriptConsole: 71000000000000000000
+        prism: 21000000000000000n,
+        chancemaker: 26000000000000000n,
+        fractalEngine: 310000000000000000n,
+        javascriptConsole: 71000000000000000000n
     }
 
     cookieButton = createButton("Cookie", 100, 150, 200, 200);

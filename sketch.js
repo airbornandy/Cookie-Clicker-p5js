@@ -6,12 +6,14 @@ let shopPrices;
 let baseShopPrices
 let cursor, grandma, farm, mine, factory, bank, temple, wizardTower, shipment, alchemyLab, portal, timeMachine, antimatterCondenser, prism, chancemaker, fractalEngine, javascriptConsole;
 let cursorA, grandmaA, farmA, mineA, factoryA, bankA, templeA, wizardTowerA, shipmentA, alchemyLabA, portalA, timeMachineA, antimatterCondenserA, prismA, chancemakerA, fractalEngineA, javascriptConsoleA;
+let cps;
 
 function setup() {
     createCanvas(800, 800);
     gui = createGui();
 
     cookies = 0;
+    cps = 0;
 
     cursorA = 0
     grandmaA = 0;
@@ -88,21 +90,34 @@ function draw() {
     drawGui();
 
     textSize(50)
-    text(`Cookies: ${cookies}`, 80, 100)
+    text(`Cookies: ${Math.round(cookies)}`, 80, 100)
 
     if (cookieButton.isPressed) {
         cookies += 1;
     }
 
     if (cursor.isPressed) {
+        
         if (cookies >= shopPrices.cursor) {
-            shopPrices.cursor = Math.ceil(baseShopPrices.cursor * Math.pow(1.15, Math.max(0, cursorA)));
-            cursorA += 1;
-            cursor = createButton(`Cursor               ${shopPrices.cursor}`, 590, 100, 200, 50);
             cookies -= shopPrices.cursor;
+            cursorA += 1;
+            cps += 0.1;
+            shopPrices.cursor = Math.ceil(baseShopPrices.cursor * Math.pow(1.15, Math.max(0, cursorA)));
+            cursor = createButton(`Cursor               ${shopPrices.cursor}`, 590, 100, 200, 50);
+            
         } else {
             console.log('Not enough cookies');
         }
     }
 
+    
+
+}
+
+window.setInterval(function () {
+    addCPS();
+}, 1000);
+
+function addCPS() {
+    cookies += cps;
 }

@@ -89,8 +89,11 @@ function draw() {
     background(127);
     drawGui();
 
-    textSize(50)
-    text(`Cookies: ${Math.round(cookies)}`, 80, 100)
+    textSize(25);
+    text(`CPS: ${Math.round( cps * 10 ) / 10}`, 155, 130)
+
+    textSize(50);
+    text(`Cookies: ${Math.round(cookies)}`, 80, 100);
 
     if (cookieButton.isPressed) {
         cookies += 1;
@@ -101,10 +104,23 @@ function draw() {
         if (cookies >= shopPrices.cursor) {
             cookies -= shopPrices.cursor;
             cursorA += 1;
-            cps += 0.1;
+            cps += 0.10;
             shopPrices.cursor = Math.ceil(baseShopPrices.cursor * Math.pow(1.15, Math.max(0, cursorA)));
-            cursor = createButton(`Cursor               ${shopPrices.cursor}`, 590, 100, 200, 50);
+            cursor = createButton(`Cursor:${cursorA}               ${shopPrices.cursor}`, 590, 100, 200, 50);
             
+        } else {
+            console.log('Not enough cookies');
+        }
+    }
+
+    if (grandma.isPressed) {
+
+        if (cookies >= shopPrices.grandma) {
+            cookies -= shopPrices.grandma;
+            grandmaA += 1;
+            cps += 1;
+            shopPrices.grandma = Math.ceil(baseShopPrices.grandma * Math.pow(1.15, Math.max(0, grandmaA)));
+            grandma = createButton(`Grandma:${grandmaA}       ${shopPrices.grandma}`, 590, 150, 200, 50);
         } else {
             console.log('Not enough cookies');
         }

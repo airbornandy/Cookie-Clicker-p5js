@@ -78,9 +78,12 @@ function setup() {
     // Create Buttons
     cookieButton = createButton("Cookie", 100, 150, 200, 200);
 
-    cursor = createButton(`Cursor               ${shopPrices.cursor}`, 590, 100, 200, 50);
+    cursor = createButton(`Cursor           ${shopPrices.cursor}`, 590, 100, 200, 50);
     grandma = createButton(`Grandma         ${shopPrices.grandma}`, 590, 150, 200, 50);
-
+    farm = createButton(`Farm               ${shopPrices.farm}`, 590, 200, 200, 50);
+    factory = createButton(`Factory        ${shopPrices.factory}`, 590, 250, 200, 50);
+    bank = createButton(`Bank           ${shopPrices.bank}`, 590, 300, 200, 50);
+    temple = createButton(`Temple       ${shopPrices.temple}`, 590, 350, 200, 50);
 
 
 }
@@ -124,6 +127,20 @@ function draw() {
         } else {
             console.log('Not enough cookies');
         }
+    }
+
+    if (farm.isPressed) {
+
+        if (cookies >= shopPrices.farm) {
+            cookies -= shopPrices.farm;
+            farmA += 1;
+            cps += 8;
+            shopPrices.farm = Math.ceil(baseShopPrices.farm * Math.pow(1.15, Math.max(0, farmA)));
+            farm = createButton(`Farm:${farmA}          ${shopPrices.farm}`, 590, 200, 200, 50);
+        } else {
+            console.log('Not enough cookies');
+        }
+
     }
 
     
